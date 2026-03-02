@@ -24,7 +24,7 @@ This lab focuses on:
 
 ---
 
-# 🛑 AI Usage Rules
+## 🛑 AI Usage Rules
 
 AI is allowed — but controlled.
 
@@ -39,22 +39,21 @@ If you cannot explain it, it will be treated as incomplete.
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
-
-```
+```text
 phonebook.js
 ```
 
 Optional:
 
-```
+```text
 README.md (your reflections)
 ```
 
 ---
 
-# 📦 Step 1 — Data Structure
+## 📦 Step 1 — Data Structure
 
 Use an array of objects:
 
@@ -72,7 +71,7 @@ Do NOT use objects as key-value maps for storage.
 
 ---
 
-# 🔧 Step 2 — CRUD Functions
+## 🔧 Step 2 — CRUD Functions
 
 Implement the following using loops only:
 
@@ -92,7 +91,7 @@ Implement the following using loops only:
 
 ---
 
-# 🔁 Step 3 — Sorting Algorithms
+## 🔁 Step 3 — Sorting Algorithms
 
 You must implement all three manually.
 
@@ -149,7 +148,7 @@ mergeSortByName(book)
 
 ---
 
-# 📊 Reflection Questions
+## 📊 Reflection Questions
 
 Answer in comments at the bottom of your file:
 
@@ -161,7 +160,7 @@ Answer in comments at the bottom of your file:
 
 ---
 
-# 🎯 Grading Criteria
+## 🎯 Grading Criteria
 
 | Criteria                      | Weight |
 | ----------------------------- | ------ |
@@ -173,9 +172,80 @@ Answer in comments at the bottom of your file:
 
 ---
 
-# ⚠️ Useful Links
+## ⚠️ Useful Links
 
-- [Merge Sort - Video](https://www.youtube.com/watch?v=4VqmGXwpLqc)
-- [Merge Sort - Coding Tutorial](https://www.geeksforgeeks.org/javascript/javascript-program-for-merge-sort/)
-- [Bubble Sort - Video](https://www.youtube.com/watch?v=xli_FI7CuzA)
-- [Selection Sort - Video](https://www.youtube.com/watch?v=g-PGLbMth_g)
+* [Merge Sort - Video](https://www.youtube.com/watch?v=4VqmGXwpLqc)
+* [Merge Sort - Coding Tutorial](https://www.geeksforgeeks.org/javascript/javascript-program-for-merge-sort/)
+* [Bubble Sort - Video](https://www.youtube.com/watch?v=xli_FI7CuzA)
+* [Selection Sort - Video](https://www.youtube.com/watch?v=g-PGLbMth_g)
+
+---
+
+## ▶️ Run & Quick Test
+
+## Run the script
+
+```bash
+node phonebook.js
+```
+
+## Quick function tests (PowerShell)
+
+### 1) CRUD checks
+
+```bash
+node -e "const p=require('./phonebook'); const book=[...p.phoneBook]; p.addEntry(book,{name:'Test User',phone:'1112223333',city:'Test City'}); p.updateEntry(book,'Test User',{city:'Updated City'}); p.deleteEntry(book,'Test User'); console.log(book.some(e=>e.name==='Test User') ? 'CRUD Failed' : 'CRUD Passed');"
+```
+
+Expected output:
+
+```text
+CRUD Passed
+```
+
+### 2) Bubble Sort by Name (in-place)
+
+```bash
+node -e "const p=require('./phonebook'); const book=[...p.phoneBook]; p.bubbleSortByName(book); console.log(book.slice(0,5).map(e=>e.name));"
+```
+
+Expected output:
+
+```text
+[ 'Amina', 'Avery', 'Brian', 'Carla', 'Cory' ]
+```
+
+### 3) Selection Sort by Phone (in-place)
+
+```bash
+node -e "const p=require('./phonebook'); const book=[...p.phoneBook]; p.selectionSortByPhone(book); console.log(book.slice(0,5).map(e=>e.phone));"
+```
+
+Expected output:
+
+```text
+[ '2265551003', '2265551021', '2495551009', '2895551001', '2895551014' ]
+```
+
+### 4) Merge Sort by Name (new array)
+
+```bash
+node -e "const p=require('./phonebook'); const original=[...p.phoneBook]; const sorted=p.mergeSortByName(original); console.log(sorted.slice(0,5).map(e=>e.name)); console.log('Original unchanged length:', original.length);"
+```
+
+Expected output:
+
+```text
+[ 'Amina', 'Avery', 'Brian', 'Carla', 'Cory' ]
+Original unchanged length: 30
+```
+
+---
+
+## ✅ Submission Checklist
+
+* [ ] `phonebook.js` contains an array of objects (not a key-value map) with 20+ generated entries.
+* [ ] Manual CRUD functions are complete: `addEntry`, `updateEntry`, and `deleteEntry` (loop-based, `splice` used for delete).
+* [ ] `bubbleSortByName(book)` is implemented with nested loops and in-place object swapping.
+* [ ] `selectionSortByPhone(book)` is implemented with min-index tracking, numeric phone comparison, and in-place sorting.
+* [ ] `mergeSortByName(book)` uses recursion + `merge()` and returns a new sorted array without mutating the original.
